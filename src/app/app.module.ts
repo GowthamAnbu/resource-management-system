@@ -10,6 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './shared/components/login/login.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AuthService } from './shared/services/auth.service';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,13 @@ import { AuthService } from './shared/services/auth.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule,
+    AppRoutingModule,
   ],
   providers: [Title, AuthService],
   bootstrap: [AppComponent]
