@@ -1,7 +1,7 @@
 const path = require('path');
 
 const rootPath = path.normalize(__dirname +'/../../'),
-      auth0_domain = 'initial-auth0.auth0.com',
+      auth0_domain = 'initial-auth0.auth2.com',
       auth0_api_audience = 'http://localhost:8083/api/';
 
 module.exports = {
