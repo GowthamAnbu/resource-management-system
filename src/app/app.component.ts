@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private _auth: AuthAdminService) {
     // Check for authentication and handle if hash present
-    _auth.handleAuth();
+    // _auth.handleAuth();
   }
 
 }

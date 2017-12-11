@@ -27,8 +27,8 @@ import { CallbackComponent } from './shared/components/pages/callback.component'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     AdminModule,
+    AppRoutingModule
   ],
   providers: [Title, AuthAdminService],
   bootstrap: [AppComponent]
