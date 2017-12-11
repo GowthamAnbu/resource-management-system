@@ -9,14 +9,16 @@ import { MaterialModule } from './material/material.module';
 
 import { LoginComponent } from './shared/components/login/login.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { AuthService } from './shared/services/auth.service';
+import { AuthAdminService } from './shared/services/auth-admin.service';
 import { AdminModule } from './modules/admin/admin.module';
+import { CallbackComponent } from './shared/components/pages/callback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -25,10 +27,10 @@ import { AdminModule } from './modules/admin/admin.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule,
     AppRoutingModule,
+    AdminModule,
   ],
-  providers: [Title, AuthService],
+  providers: [Title, AuthAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
