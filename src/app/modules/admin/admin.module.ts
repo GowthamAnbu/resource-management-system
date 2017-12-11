@@ -8,6 +8,9 @@ import { AdminComponent } from './admin.component';
 import { MaterialModule } from '../../material/material.module';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { NavbarComponent } from './components/navbar-admin/navbar-admin.component';
+import { DashboardService } from './services/dashboard.service';
+import { CandidatesService } from './services/candidates.service';
+import { EmployeesService } from './services/employees.service';
 
 @NgModule({
   imports: [
@@ -16,6 +19,7 @@ import { NavbarComponent } from './components/navbar-admin/navbar-admin.componen
     MaterialModule
   ],
   declarations: [DashboardComponent, CandiadatesComponent, AdminComponent, EmployeesComponent, NavbarComponent],
-  bootstrap: [AdminComponent]
+  bootstrap: [AdminComponent],
+  providers: [DashboardService, CandidatesService, EmployeesService]
 })
 export class AdminModule { }
