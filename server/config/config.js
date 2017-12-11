@@ -9,7 +9,7 @@ module.exports = {
     rootPath: rootPath,
     AUTH0_DOMAIN: auth0_domain,
     AUTH0_API_AUDIENCE: auth0_api_audience,
-		MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost/resource-management-system',
+		MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost/rms-mock',
 		port: process.env.PORT || 3030
 	},
 	production: {

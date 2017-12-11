@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar-admin/navbar-admin.componen
 import { DashboardService } from './services/dashboard.service';
 import { CandidatesService } from './services/candidates.service';
 import { EmployeesService } from './services/employees.service';
+import { CreateCandidateComponent } from './components/create-candidate/create-candidate.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { EmployeesService } from './services/employees.service';
     AdminRoutingModule,
     MaterialModule
   ],
-  declarations: [DashboardComponent, CandiadatesComponent, AdminComponent, EmployeesComponent, NavbarComponent],
+  declarations: [DashboardComponent, CandiadatesComponent, AdminComponent, EmployeesComponent, NavbarComponent, CreateCandidateComponent],
   bootstrap: [AdminComponent],
   providers: [DashboardService, CandidatesService, EmployeesService]
 })

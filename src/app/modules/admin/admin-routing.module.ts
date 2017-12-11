@@ -5,6 +5,7 @@ import { DashboardComponent } from '../admin/components/dashboard-admin/dashboar
 import { CandiadatesComponent } from '../admin/components/candiadates/candiadates.component';
 import { AdminComponent } from './admin.component';
 import { EmployeesComponent } from './components/employees/employees.component';
+import { CreateCandidateComponent } from './components/create-candidate/create-candidate.component';
 
 /*
 add the auth guard for all the children in the parent path
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'candidate/add',
+        component: CreateCandidateComponent
       },
       {
         path: 'candidates',
