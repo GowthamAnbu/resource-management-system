@@ -1,6 +1,6 @@
 const Technology = require('../models/technology');
 
-exports.Create = (request, response, next) =>{
+exports.Create = (request, response) =>{
   let technology = new Technology({
     name:request.body.name
   });
@@ -9,25 +9,80 @@ exports.Create = (request, response, next) =>{
       if(err.toString().indexOf('E11000') > -1){
           err = new Error('Duplicate technology name');
       }
-			response.status(400);
-			return response.send({reason:err.toString()});
+			return response.status(400).json({reason:err.toString()});
     }
     if (_technology){
-      response.send(_technology);
-    }else{
-      return next(err);
+      response.setHeader('Content-Type', 'application/json');
+      response.json(_technology);
     }
   })
 }
 
-exports.Get = (request, response, next) =>{
+exports.Get = (request, response) => {
   Technology.find({}, (err, _technology) => {
     if(err){
-      return next(err);
+			return response.status(400).json(err);
     }
     if (_technology){
-      response.send(_technology);
+      response.setHeader('Content-Type', 'application/json');
+      response.json(_technology);
     }
   })
+}
 
+exports.GetById = (request, response) => {
+  let id = request.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    Technology.findById(id, (err, _technology)=> {
+      if(err){
+        return response.status(400).json(err);
+      }
+      if(_technology){
+      response.setHeader('Content-Type', 'application/json');
+      response.json(_technology);
+      }
+    });
+  }else{
+      response.status(400).json({message:"not a valid id"});
+  }
+};
+/* experimental Feature update name*/
+exports.update = (request, response) => {
+  let id = request.params.id;
+  let technology = new Technology({
+    name: request.body.name
+  });
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    Technology.findByIdAndUpdate(id, {name: technology.name}, {new: true}, (err, _technology) => {
+      if (err) {
+        return response.status(400).json(err);
+      }
+      if (_technology) {
+        response.setHeader('Content-Type', 'application/json');
+        response.json(_technology);
+      }
+    })
+  }else{
+    response.status(400).json({message:"not a valid id"});
+  }
+}
+/* experimental Feature update questions by push for array of ids*/
+exports.update = (request, response) => {
+  let id = request.params.id;
+  let technology = new Technology({
+    questions: request.body.questions
+  });
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    Technology.findByIdAndUpdate(id, {$push:{questions: technology.questions}}, {new: true}, (err, _technology) => {
+      if (err) {
+        return response.status(400).json(err);
+      }
+      if (_technology) {
+        response.setHeader('Content-Type', 'application/json');
+        response.json(_technology);
+      }
+    })
+  }else{
+    response.status(400).json({message:"not a valid id"});
+  }
 }

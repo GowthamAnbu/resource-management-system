@@ -7,4 +7,4 @@ let department = new Schema({
     updated: { type: Date, default: Date.now },
     active: { type: Boolean, default: true }
 });
-let Department = mongoose.model('Department', department);
+let Department = module.exports  = mongoose.model('Department', department);

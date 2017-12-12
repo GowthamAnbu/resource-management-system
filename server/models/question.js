@@ -12,4 +12,4 @@ let question = new Schema({
     active: { type: Boolean, default: true }
 });
 
-let Question = mongoose.model('Question', question);
+let Question = module.exports  = mongoose.model('Question', question);

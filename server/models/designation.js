@@ -7,4 +7,4 @@ let designation = new Schema({
     active: { type: Boolean, default: true }
 });
 
-let Designation = mongoose.model('Designation', designation);
+let Designation = module.exports  = mongoose.model('Designation', designation);

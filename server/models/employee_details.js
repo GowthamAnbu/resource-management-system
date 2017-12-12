@@ -9,4 +9,4 @@ let employee_details = new Schema({
     active: { type: Boolean, default: true }
 });
 
-let Employee_details = mongoose.model('Employee_details', employee_details);
+let Employee_details = module.exports  = mongoose.model('Employee_details', employee_details);

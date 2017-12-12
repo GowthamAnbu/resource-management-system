@@ -8,4 +8,4 @@ let candidate_progress = new Schema({
     result: { type: Boolean }
 });
 
-let Candidate_progress = mongoose.model('Candidate_progress', candidate_progress);
+let Candidate_progress = module.exports  = mongoose.model('Candidate_progress', candidate_progress);

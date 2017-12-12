@@ -10,4 +10,4 @@ let employee = new Schema({
     active: { type: Boolean, default: true }
 });
 
-let Employee = mongoose.model('Employee', employee);
+let Employee = module.exports  = mongoose.model('Employee', employee);

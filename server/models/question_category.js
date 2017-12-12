@@ -7,4 +7,4 @@ let question_category = new Schema({
     active: { type: Boolean, default: true }
 });
 
-let Question_category = mongoose.model('Question_category', question_category);
+let Question_category = module.exports  = mongoose.model('Question_category', question_category);

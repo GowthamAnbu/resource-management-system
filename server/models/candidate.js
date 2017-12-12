@@ -10,4 +10,4 @@ let candidate = new Schema({
     active: { type: Boolean } /* to specify the presence or absence and switch it back to false once candidate got selected */
 });
 
-let Candidate = mongoose.model('Candidate', candidate);
+let Candidate = module.exports = mongoose.model('Candidate', candidate);
