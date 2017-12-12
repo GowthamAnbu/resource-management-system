@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
-export class CandidatesService {
+export class CandidateService {
 private _url: string;
 
   constructor(private _http: HttpClient) { }

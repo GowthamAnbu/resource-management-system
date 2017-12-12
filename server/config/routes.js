@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   app.post('/admin/technology/create', technologies.Create);
   app.get('/admin/technology/list', technologies.Get);
+  app.get('/admin/technology/customlist', technologies.GetCustom);
 
   app.post('/admin/candidate/create')
 

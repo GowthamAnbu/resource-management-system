@@ -22,7 +22,7 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
-        path: 'candidate/add',
+        path: 'candidates/create',
         component: CreateCandidateComponent
       },
       {

@@ -1,3 +1,37 @@
-<p>
-  create-candidate works!
-</p>
+<div class="center_div">
+  <mat-card>
+  <mat-card-header>
+    <mat-card-title><strong>Candidate Creation</strong></mat-card-title>
+  </mat-card-header>
+  <form [formGroup]='candidateForm' (ngSubmit)="onSubmit(candidateForm.value)" novalidate>
+    <mat-card-content>
+      <mat-form-field [floatLabel]=floatLabel>
+        <input formControlName="name" matInput placeholder="Name">
+        <mat-error *ngIf="!isValidName() && candidateForm.controls?.name.errors?.required">
+            Please enter a name
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field [floatLabel]=floatLabel>
+        <input formControlName="email" matInput placeholder="Email">
+        <mat-error *ngIf="!isValidEmail() && candidateForm.controls?.email.errors?.required">
+            Please enter an email address
+        </mat-error>
+        <mat-error *ngIf="!isValidEmail() && candidateForm.controls?.email.errors?.pattern">
+            Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-select formControlName="technology" placeholder="Technology">
+        <mat-option *ngFor="let technology of technologies" [value]="technology._id">
+          {{technology.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!isValidTechnology()">
+          Please Choose a category
+      </mat-error>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">add</button>
+    </mat-card-actions>
+  </form>
+  </mat-card>
+</div>

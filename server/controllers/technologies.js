@@ -30,6 +30,18 @@ exports.Get = (request, response) => {
   })
 }
 
+exports.GetCustom = (request, response) => {
+  Technology.find({}, (err, _technology) => {
+    if(err){
+			return response.status(400).json(err);
+    }
+    if (_technology){
+      response.setHeader('Content-Type', 'application/json');
+      response.json(_technology);
+    }
+  }).select({name:1})
+}
+
 exports.GetById = (request, response) => {
   let id = request.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {

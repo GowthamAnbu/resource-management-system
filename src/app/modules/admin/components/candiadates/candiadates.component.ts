@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CandidatesService } from '../../services/candidates.service';
+import { CandidateService } from '../../services/candidate.service';
 
 @Component({
   selector: 'app-candiadates',
@@ -9,7 +9,7 @@ import { CandidatesService } from '../../services/candidates.service';
 export class CandiadatesComponent implements OnInit {
 public candidates;
 
-  constructor(private _candidates: CandidatesService) { }
+  constructor(private _candidates: CandidateService) { }
 
   ngOnInit() {
   }
