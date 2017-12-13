@@ -4,6 +4,7 @@ const candidates = require('../controllers/candidates');
 const designations = require('../controllers/designations');
 const departments = require('../controllers/departments');
 const department_details = require('../controllers/employee_details');
+const employees = require('../controllers/employees');
 
 module.exports = (app) => {
 
@@ -34,6 +35,11 @@ module.exports = (app) => {
   app.get('/admin/employee_details/:id', department_details.GetById);
   app.post('/admin/employee_details/:id/updateDob', department_details.updateDob);
   app.post('/admin/employee_details/create', department_details.Create);
+
+  app.get('/admin/employee/list', employees.Get);
+  app.get('/admin/employee/allEmployees', employees.getAllEmployeeDetails);
+  app.get('/admin/employee/:id', employees.GetById);
+  app.post('/admin/employee/create', employees.Create);
 
   app.post('/admin/candidate/create', candidates.Create);
 
