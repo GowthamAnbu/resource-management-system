@@ -21,7 +21,7 @@ private _url: string;
             headers: headers,
             responseType: 'json'
         };
-    this._url = 'http://localhost:3030/admin/technology/customlist';
+    this._url = 'http://localhost:3030/admin/technology/names';
     return this._http.get(this._url)
     .catch(this.handleError);
   }

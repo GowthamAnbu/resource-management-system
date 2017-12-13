@@ -50,7 +50,7 @@ exports.GetById = (request, response) => {
   }
 };
 /* experimental Feature update name*/
-exports.update = (request, response) => {
+exports.updateName = (request, response) => {
   let id = request.params.id;
   let candidate = new Candidate({
     name: request.body.name
@@ -70,7 +70,7 @@ exports.update = (request, response) => {
   }
 }
 /* experimental Feature update questions by push for array of ids*/
-exports.update = (request, response) => {
+exports.updateQuestions = (request, response) => {
   let id = request.params.id;
   let candidate = new Candidate({
     questions: request.body.questions

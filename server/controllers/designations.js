@@ -1,31 +1,31 @@
-const Level = require('../models/level');
+const Designation = require('../models/designation');
 
 exports.Create = (request, response) => {
-  let level = new Level({
+  let designation = new Designation({
     name: request.body.name
   });
 
-  Level.create(level, (err, _level) => {
+  Designation.create(designation, (err, _designation) => {
     if(err){
       if(err.toString().indexOf('E11000') > -1) {
-        err = new Error('Duplicate Level name');
+        err = new Error('Duplicate Designation name');
       }
     return response.status(400).json({reason:err.toString()});
     }
-    if (_level){
+    if (_designation){
       response.setHeader('Content-Type', 'application/json');
-      response.json(_level);
+      response.json(_designation);
     }
   })
 }
 exports.Get = (request, response) => {
-  Level.find({}, (err, _level) => {
+  Designation.find({}, (err, _designation) => {
     if(err){
       return response.status(400).json(err);
     }
-    if (_level){
+    if (_designation){
       response.setHeader('Content-Type', 'application/json');
-      response.json(_level);
+      response.json(_designation);
     }
   })
 }
@@ -33,13 +33,13 @@ exports.Get = (request, response) => {
 exports.GetById = (request, response) => {
   let id = request.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
-    Level.findById(id, (err, _level)=> {
+    Designation.findById(id, (err, _designation)=> {
       if(err){
         return response.status(400).json(err);
       }
-      if(_level){
+      if(_designation){
       response.setHeader('Content-Type', 'application/json');
-      response.json(_level);
+      response.json(_designation);
       }
     });
   }else{
@@ -47,19 +47,31 @@ exports.GetById = (request, response) => {
   }
 };
 
+exports.GetNames = (request, response) => {
+  Designation.find({}, (err, _designation) => {
+    if(err){
+      return response.status(400).json(err);
+    }
+    if (_designation){
+      response.setHeader('Content-Type', 'application/json');
+      response.json(_designation);
+    }
+  }).select({name:1})
+}
+
 exports.update = (request, response) => {
   let id = request.params.id;
-  let level = new Level({
+  let designation = new Designation({
     name: request.body.name
   });
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
-    Level.findByIdAndUpdate(id, {name: level.name}, {new: true}, (err, _level) => {
+    Designation.findByIdAndUpdate(id, {name: designation.name}, {new: true}, (err, _designation) => {
       if (err) {
         return response.status(400).json(err);
       }
-      if (_level) {
+      if (_designation) {
         response.setHeader('Content-Type', 'application/json');
-        response.json(_level);
+        response.json(_designation);
       }
     })
   }else{
