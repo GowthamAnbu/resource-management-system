@@ -1,4 +1,5 @@
 const Employee = require('../models/employee');
+const mongoose = require('mongoose');
 
 exports.Create = (request, response) => {
   let employee = new Employee({
@@ -50,10 +51,37 @@ exports.GetById = (request, response) => {
       response.status(400).json({message:"not a valid id"});
   }
 };
-
-/* yet to finish */
+/* Employee firstname and lastname from sub document */
 exports.getAllEmployeeDetails = (request, response) => {
-  Employee.find({}).select({employee_details: 1}).populate({path :'employee_details',select: ['firstName', 'lastName']}).exec( (err, _employee) => {
+  Employee.find({}).select({employee_details: 1})
+  .populate({
+    path :'employee_details',
+    select: ['firstName', 'lastName']
+  })
+  .exec( (err, _employee) => {
+    if(err){
+      return response.status(400).json(err);
+    }
+    if(_employee){
+    response.setHeader('Content-Type', 'application/json');
+    response.json(_employee);
+    }
+  })
+}
+
+/* Employee firstname,lastname,designation from sub documents */
+exports.getHrEmployees = (request, response) => {
+  let id = mongoose.Types.ObjectId('5a30e379e0644a31e81feeb6');
+  Employee.find({department: id}).select({employee_details: 1})
+  .populate({
+    path :'employee_details',
+    select: ['firstName', 'lastName']
+  })
+  .populate({
+    path :'designation',
+    select: 'name'
+  })
+  .exec( (err, _employee) => {
     if(err){
       return response.status(400).json(err);
     }

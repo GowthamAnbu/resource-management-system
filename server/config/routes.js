@@ -38,6 +38,7 @@ module.exports = (app) => {
 
   app.get('/admin/employee/list', employees.Get);
   app.get('/admin/employee/allEmployees', employees.getAllEmployeeDetails);
+  app.get('/admin/employee/hrEmployees', employees.getHrEmployees);
   app.get('/admin/employee/:id', employees.GetById);
   app.post('/admin/employee/create', employees.Create);
 
