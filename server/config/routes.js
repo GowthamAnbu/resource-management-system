@@ -3,12 +3,13 @@ const levels = require('../controllers/levels');
 const candidates = require('../controllers/candidates');
 const designations = require('../controllers/designations');
 const departments = require('../controllers/departments');
+const department_details = require('../controllers/employee_details');
 
 module.exports = (app) => {
 
   app.get('/admin/level/list', levels.Get);
-  app.post('/admin/level/:id/update', levels.update);
   app.get('/admin/level/:id', levels.GetById);
+  app.post('/admin/level/:id/update', levels.update);
   app.post('/admin/level/create', levels.Create);
 
   app.get('/admin/designation/list', designations.Get);
@@ -27,6 +28,12 @@ module.exports = (app) => {
   app.post('/admin/department/:id/updateName', departments.updateName);
   app.post('/admin/department/:id/updateTechnologies', departments.updateTechnologies);/* not checked yet */
   app.post('/admin/department/create', departments.Create);
+
+  app.get('/admin/employee_details/list', department_details.Get);
+  app.get('/admin/employee_details/names', department_details.GetNames);
+  app.get('/admin/employee_details/:id', department_details.GetById);
+  app.post('/admin/employee_details/:id/updateDob', department_details.updateDob);
+  app.post('/admin/employee_details/create', department_details.Create);
 
   app.post('/admin/candidate/create', candidates.Create);
 
