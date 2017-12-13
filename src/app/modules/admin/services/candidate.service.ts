@@ -26,6 +26,26 @@ private _url: string;
     .catch(this.handleError);
   }
 
+  createCandidate(payload): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    /* const options: {
+            headers?: HttpHeaders,
+            observe?: 'body',
+            params?: HttpParams,
+            reportProgress?: boolean,
+            responseType: 'json',
+            withCredentials?: boolean,
+            body?: string
+        } = {
+            headers: headers,
+            responseType: 'json',
+            body: JSON.stringify(payload)
+        }; */
+    this._url = 'http://localhost:3030/admin/candidate/create';
+    return this._http.post(this._url, payload)
+    .catch(this.handleError);
+  }
+
   private handleError(err: HttpErrorResponse) {
     let error: Error;
     if (err.status === 400) {

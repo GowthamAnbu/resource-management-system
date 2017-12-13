@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 import { TechnologyService } from '../../services/technology.service';
+import { CandidateService } from '../../services/candidate.service';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -21,11 +23,18 @@ private _email: FormControl;
 private _technology: FormControl;
 technologies: Array<any> = [];
 
-  constructor(private _router: Router, private _technologyService: TechnologyService) { }
+  constructor(public snackBar: MatSnackBar, private _router: Router,
+     private _technologyService: TechnologyService, private _candidateService: CandidateService) { }
 
   ngOnInit() {
     this._getCustomTechnologies();
     this._setProperties();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
   private _getCustomTechnologies() {
@@ -66,9 +75,19 @@ technologies: Array<any> = [];
 
   onSubmit(values): void {
     if (this.candidateForm.valid) {
-      console.log(values);
+      this._candidateService.createCandidate(values)
+      .subscribe(
+        data => {
+          this._router.navigate(['/admin/candidates']);
+          this.openSnackBar('Candidate Creation', 'Success');
+        },
+        err => {
+          this._router.navigate(['/admin/candidates/create']);
+          this.openSnackBar('Candidate Creation', 'Failed');
+        }
+      );
     }else {
-      console.log('err');
+      this.openSnackBar('Information Correction', 'Failed');
     }
   }
 }

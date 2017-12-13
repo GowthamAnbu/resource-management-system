@@ -25,12 +25,13 @@
           {{technology.name}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="!isValidTechnology()">
-          Please Choose a category
+      <mat-error *ngIf="!isValidTechnology() && candidateForm.controls?.technology.errors?.required">
+          Please choose a category
       </mat-error>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" type="submit">add</button>
+        <button mat-raised-button color="primary" [routerLink]="['/admin/candidates']" >cancel</button>
     </mat-card-actions>
   </form>
   </mat-card>

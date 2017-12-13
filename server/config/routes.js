@@ -1,5 +1,6 @@
 const technologies = require('../controllers/technologies');
 const levels = require('../controllers/levels');
+const candidates = require('../controllers/candidates');
 
 module.exports = (app) => {
 
@@ -7,7 +8,7 @@ module.exports = (app) => {
   app.get('/admin/technology/list', technologies.Get);
   app.get('/admin/technology/customlist', technologies.GetCustom);
 
-  app.post('/admin/candidate/create')
+  app.post('/admin/candidate/create', candidates.Create);
 
   app.post('/admin/level/create', levels.Create);
   app.get('/admin/level/list', levels.Get);

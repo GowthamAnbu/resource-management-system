@@ -2,9 +2,9 @@ const Candidate = require('../models/candidate');
 
 exports.Create = (request, response) => {
   let candidate = new Candidate({
-    name: response.body.name,
-    eamil: response.body.email,
-    technology: response.body.technology,
+    name: request.body.name,
+    email: request.body.email,
+    technology: request.body.technology,
   });
   /* add the questions assigned to the technology manually */
   Candidate.create(candidate, (err, _candidate) => {
