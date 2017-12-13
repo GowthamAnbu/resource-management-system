@@ -7,16 +7,16 @@
     <mat-card-content>
       <mat-form-field [floatLabel]=floatLabel>
         <input formControlName="name" matInput placeholder="Name">
-        <mat-error *ngIf="!isValidName() && candidateForm.controls?.name.errors?.required">
+        <mat-error *ngIf="!isValidName() && candidateForm.controls['name'].errors?.required">
             Please enter a name
           </mat-error>
       </mat-form-field>
       <mat-form-field [floatLabel]=floatLabel>
         <input formControlName="email" matInput placeholder="Email">
-        <mat-error *ngIf="!isValidEmail() && candidateForm.controls?.email.errors?.required">
+        <mat-error *ngIf="!isValidEmail() && candidateForm.controls['email'].errors?.required"> <!-- open issue:https://github.com/angular/vscode-ng-language-service/issues/126 -->
             Please enter an email address
         </mat-error>
-        <mat-error *ngIf="!isValidEmail() && candidateForm.controls?.email.errors?.pattern">
+        <mat-error *ngIf="!isValidEmail() && candidateForm.controls['email'].errors?.pattern">
             Please enter a valid email address
         </mat-error>
       </mat-form-field>
@@ -25,7 +25,7 @@
           {{technology.name}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="!isValidTechnology() && candidateForm.controls?.technology.errors?.required">
+      <mat-error *ngIf="!isValidTechnology() && candidateForm.controls['technology'].errors?.required">
           Please choose a category
       </mat-error>
     </mat-card-content>
