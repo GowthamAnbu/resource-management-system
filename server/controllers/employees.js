@@ -53,14 +53,13 @@ exports.GetById = (request, response) => {
 
 /* yet to finish */
 exports.getAllEmployeeDetails = (request, response) => {
-  Employee.find({}).populate('employee_details').exec( (err, _employee) => {
+  Employee.find({}).select({employee_details: 1}).populate({path :'employee_details',select: ['firstName', 'lastName']}).exec( (err, _employee) => {
     if(err){
       return response.status(400).json(err);
     }
     if(_employee){
     response.setHeader('Content-Type', 'application/json');
-    console.log(_employee.employee_details);
-    response.json(_employee.Employee_detail);
+    response.json(_employee);
     }
   })
 }
