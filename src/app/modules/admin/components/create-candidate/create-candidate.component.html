@@ -28,6 +28,14 @@
       <mat-error *ngIf="!isValidTechnology() && candidateForm.controls['technology'].errors?.required">
           Please choose a category
       </mat-error>
+      <mat-select formControlName="employee" placeholder="Handled by - Hr" style="margin-top: 10px">
+        <mat-option *ngFor="let hrEmployee of hrEmployees" [value]="hrEmployee.id">
+          {{hrEmployee.firstName.toLocaleUpperCase()}} {{hrEmployee.lastName.toLocaleUpperCase()}} - {{hrEmployee.designation}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!isValidHrEmployee() && candidateForm.controls['employee'].errors?.required">
+          Please choose a category
+      </mat-error>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" type="submit">add</button>

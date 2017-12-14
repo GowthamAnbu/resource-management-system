@@ -5,7 +5,7 @@ exports.Create = (request, response) => {
     name: request.body.name,
     email: request.body.email,
     technology: request.body.technology,
-    handledBy: request.body.handledBy
+    employee: request.body.employee
   });
   /* add the questions assigned to the technology manually */
   Candidate.create(candidate, (err, _candidate) => {
